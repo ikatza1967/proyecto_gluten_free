@@ -1,0 +1,17 @@
+[
+    {
+        "id": "Producto",
+        "texto":"Muy recomendable 100%",
+        "img":"https://images.openfoodfacts.org/images/products/303/349/000/4521/front_fr.93.400.jpg",
+        "Nombre":"Yogur natural - Danone - 500 g (4 × 125 g)",
+        "icono":"no-gluten.svg"
+    },
+
+    {
+        "id": "Producto",
+        "texto":"Muy recomendable 100%",
+        "img":"https://images.openfoodfacts.org/images/products/303/371/006/5967/front_es.328.400.jpg",
+        "Nombre":"Nesquik - Nestlé - 1 kg",
+        "icono":"no-gluten.svg"
+    }
+]
