@@ -1,38 +1,38 @@
 <template>
+ 
   <div class="card-container">
 
     <div v-for="producto in listaProductos" :key="producto.id">
       <div class="card">
         <h1 :style="getH1Style(producto)">{{ producto.texto }}</h1>
         <div class="cat"></div>
-        <img class="img" :src= "producto.img " alt="" />
+        <img class="img" :src="producto.img" alt="" />
         <h2 class="h2">{{ producto.Nombre }}</h2>
-        <img
-          class="icono free"
-          :src="producto.icono"
-          alt="Imagen en la esquina inferior izquierda"
-        />
+        <img class="icono free" :src="producto.icono" alt="Imagen en la esquina inferior izquierda" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+
 let listaProductos = [
   {
     id: "1",
     texto: "Muy recomendable 100%",
-    img: "	https://images.openfoodfacts.org/images/products/303/349/000/4521/front_fr.93.200.jpg",
-    Nombre: "Yogur natural - Danone - 500 g (4 × 125 g)",
+    img: "https://images.openfoodfacts.org/images/products/506/033/563/5808/front_fr.62.200.jpg	",
+    Nombre: "Monster Energy Ultra - 500 ml",
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
 
   {
     id: "2",
     texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/303/371/006/5967/front_es.328.400.jpg",
+    img: "https://images.openfoodfacts.org/images/products/761/010/008/8056/front_en.71.200.jpg",
     Nombre: "Nesquik - Nestlé - 1 kg",
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
   {
     id: "3",
@@ -40,6 +40,7 @@ let listaProductos = [
     img: "https://images.openfoodfacts.org/images/products/301/762/042/2003/front_es.445.200.jpg",
     Nombre: "Nutella - Ferrero - 400 g",
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
   {
     id: "4",
@@ -47,6 +48,7 @@ let listaProductos = [
     img: "https://images.openfoodfacts.org/images/products/541/118/811/2709/front_es.396.200.jpg",
     Nombre: "Almond No Sugars - Alpro - 1 l",
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
   {
     id: "5",
@@ -55,6 +57,7 @@ let listaProductos = [
     Nombre: "Alpro vainilla - 500 g",
 
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
   {
     id: "6",
@@ -62,6 +65,7 @@ let listaProductos = [
     img: "https://images.openfoodfacts.org/images/products/87157215/front_es.169.200.jpg",
     Nombre: "Ketchup - Heinz - 250 g ",
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
   {
     id: "7",
@@ -69,6 +73,7 @@ let listaProductos = [
     img: "https://images.openfoodfacts.org/images/products/848/000/003/8524/front_es.73.200.jpg",
     Nombre: "Guacamole - Hacendado - 200g",
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
   {
     id: "8",
@@ -76,6 +81,7 @@ let listaProductos = [
     img: "https://images.openfoodfacts.org/images/products/20095291/front_es.133.200.jpg",
     Nombre: "Chocolate negro Ecuador 70% cacao - J.D. Gross - 125g",
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
   {
     id: "9",
@@ -83,6 +89,7 @@ let listaProductos = [
     img: "https://images.openfoodfacts.org/images/products/20150907/front_es.115.200.jpg",
     Nombre: "Arándanos deshidratados - Alesto - 200 g",
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
   {
     id: "10",
@@ -90,173 +97,194 @@ let listaProductos = [
     img: "https://images.openfoodfacts.org/images/products/807/680/951/3722/front_es.878.200.jpg",
     Nombre: "Basilico - Barilla - 400 g",
     icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
+    color: "verde"
   },
   {
     id: "11",
     texto: "Poca informacion 20%",
-    img: "https://images.openfoodfacts.org/images/products/304/514/010/5502/front_es.298.200.jpg",
-    Nombre: "Schokolade - Alpenmilch - Milka - 100 g",
+    img: "https://images.openfoodfacts.org/images/products/324/541/380/8196/front_fr.66.200.jpg",
+    Nombre: "Pesto verde - Carrefour - 190 g",
     icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:"naranja"
+    color: "naranja"
   },
   {
     id: "12",
     texto: "Poca informacion 20%",
-    img: "",
-    Nombre: "",
+    img: "https://images.openfoodfacts.org/images/products/541/118/811/0835/front_es.382.200.jpg",
+    Nombre: "Leche de almendras tostadas - Alpro - 1 L",
     icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
+    color: "naranja"
   },
   {
     id: "13",
     texto: "Poca informacion 20%",
-    img: "",
-    Nombre: "",
+    img: "https://images.openfoodfacts.org/images/products/871/410/063/5650/front_es.153.200.jpg",
+    Nombre: "mini Almond - Magnum - 330 ml / 276 g",
     icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
+    color: "naranja"
   },
   {
     id: "14",
-    texto: "poca informacion 20%",
-    img: "",
-    Nombre: "",
+    texto: "Poca informacion 20%",
+    img: "https://images.openfoodfacts.org/images/products/848/000/029/1349/front_es.18.200.jpg",
+    Nombre: "Harina integral de trigo - Hacendado - 1 kg",
     icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
+    color: "naranja"
   },
   {
     id: "15",
     texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
+    img: "https://images.openfoodfacts.org/images/products/842/320/720/1315/front_es.24.200.jpg",
+    Nombre: "Tortitas de Maíz - Bicentury - 130 g",
     icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
-    
+    color: "naranja"
+
   },
   {
     id: "16",
     texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
+    img: "https://images.openfoodfacts.org/images/products/84117205/front_es.30.200.jpg",
+    Nombre: "Batido de chocolate - Puleva - 200 ml",
     icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
+    color: "naranja"
 
-    
+
   },
   {
     id: "17",
-    texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
-    
+    texto: "sin informacion suficiente",
+    img: "https://images.openfoodfacts.org/images/products/841/012/801/0225/front_es.17.200.jpg",
+    Nombre: "Leche desnatada 0% - Pascual - 1 litro",
+    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
+    color: "gris"
+
   },
   {
-    id: "16",
-    texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
+    id: "18",
+    texto: "sin informacion suficiente",
+    img: "https://images.openfoodfacts.org/images/products/14126008/front_es.22.200.jpg",
+    Nombre: "pan sin gluten - Bimbo - 450 g",
+    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
+    color: "gris"
   },
   {
-    id: "16",
-    texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
+    id: "19",
+    texto: "sin informacion suficiente",
+    img: "https://images.openfoodfacts.org/images/products/87157239/front_es.150.200.jpg",
+    Nombre: "Ketchup - Heinz - 500ml",
+    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
+    color: "gris"
   },
   {
     id: "20",
-    texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
-    
+    texto: "sin informacion suficiente",
+    img: "https://images.openfoodfacts.org/images/products/90162800/front_en.97.200.jpg",
+    Nombre: "RedBull Sugarfree - Red Bull - 250ml",
+    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
+    color: "gris"
+
   },
   {
     id: "21",
-    texto: "Sin informacion suficiente",
-    img: "g",
-    Nombre:"",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color:""
-  }, 
-    
-    {
-    id: "16",
-    texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
+    texto: "sin informacion suficiente",
+    img: "https://images.openfoodfacts.org/images/products/871/570/040/7760/front_es.150.200.jpg",
+    Nombre: "Ketchup ecológico - Heinz - 580 g",
     icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
-    color:"gris"
+    color: "gris"
   },
-    {
-    id: "16",
-    texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    },
-  
-  {
-    id: "16",
-    texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    
-  },
-    
-  
-  {
-    id: "16",
-    texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-  },    
 
   {
-    id: "16",
-    texto: "Poca informacion 20%",
-    img: "g",
-    Nombre: "",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    
+    id: "22",
+    texto: "sin informacion suficiente",
+    img: "https://images.openfoodfacts.org/images/products/544/900/001/1527/front_es.215.200.jpg",
+    Nombre: "Fanta naranja - 330 ml",
+    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
+    color: "gris"
   },
-  function getH1Style(producto) {
-  if (producto.texto === "Poca informacion 20%") {
-    return "background-color:orange; ";
-  } else if (producto.texto === "sin informacion suficiente") {
-    return "background-color: grey; ";
-  } else  if(producto.texto === "no recomendable 0%")
-    return "";
-  }
+  {
+    id: "23",
+    texto: "No Recomendable",
+    img: "https://images.openfoodfacts.org/images/products/841/001/444/2291/front_es.51.200.jpg",
+    Nombre: "Cola Cao 0% - 300 g",
+    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
+    color: "rojo"
+  },
 
+  {
+    id: "24",
+    texto: "No Recomendable",
+    img: "https://images.openfoodfacts.org/images/products/400/172/481/9905/front_es.147.200.jpg",
+    Nombre: "Ristorante: Pizza vegetale - Dr. Oetker - 385 g",
+    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
+    color: "rojo"
+  },
+  {
+    id: "25",
+    texto: "No Recomendable",
+    img: "https://images.openfoodfacts.org/images/products/338/739/032/6574/front_fr.315.200.jpg",
+    Nombre: "Cookie Crisp - 375 g",
+    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
+    color: "rojo"
+  },
+
+  {
+    id: "26",
+    texto: "No Recomendable",
+    img: "https://images.openfoodfacts.org/images/products/871/503/511/0106/front_es.197.200.jpg",
+    Nombre: "Salsa de soja - Kikkoman - 150 ml",
+    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
+    color: "rojo"
+  },
+  {
+    id: "27",
+    texto: "No Recomendable",
+    img: "https://images.openfoodfacts.org/images/products/841/007/647/0812/front_es.116.200.jpg",
+    Nombre: "Wraps integrales de trigo - Old El Paso - 350 g",
+    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
+    color: "rojo"
+  },
+  {
+    id: "28",
+    texto: "No Recomendable",
+    img: "https://images.openfoodfacts.org/images/products/800/050/003/7560/front_es.199.200.jpg",
+    Nombre: "Kinder Bueno - 43g",
+    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
+    color: "rojo"
+  },
 ];
+function getH1Style(producto) {
+  if (producto.texto === "Poca informacion 20%") {
+    return "background-color: orange;";
+  } else if (producto.texto === "sin informacion suficiente") {
+    return "background-color: grey;";
+  } else if (producto.texto === "No Recomendable") {
+    return "background-color: red;";
+  } else {
+    return "background-color: green;";
+  }
+}
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .card-container {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
-  
+
 }
 
 .card {
-  width: 400px; 
+  width: 400px;
   border: 1px solid #ccc;
   border-radius: 8px;
   flex-direction: row;
   text-align: center;
   position: relative;
-   margin: 10px; 
+  margin: 10px;
 }
 
 /* .card:last-child {
@@ -271,20 +299,21 @@ let listaProductos = [
   padding: 15px;
   max-height: 260px;
   align: center ; */
-  
+
 
 }
 
 .h1 {
   background-color: rgb(28, 238, 28);
   font-size: 1rem;
-  display: inline-block block ;
+  display: inline-block block;
   text-align: center;
   margin-top: auto;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   padding: 2px;
 }
+
 img {
   max-width: 100%;
   max-height: 100%;
@@ -295,7 +324,8 @@ img {
   text-align: center;
 
 }
-.naranja{
+
+.naranja {
   background-color: coral;
 }
 </style>
