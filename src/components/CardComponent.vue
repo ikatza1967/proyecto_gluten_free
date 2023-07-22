@@ -1,280 +1,136 @@
 <template>
- 
-  <div class="card-container">
+<div>
+    <div class="card">
+      <input v-model="nuevoProducto.texto" type="text" name="texto" id="texto" placeholder="Adecuado" />
+      <input v-model="nuevoProducto.imgSrc" type="text" name="imgSrc" id="imgSrc" placeholder="URL de la foto" />
+      <input v-model="nuevoProducto.Nombre" type="text" name="nombre" id="nombre" placeholder="Nombre del producto" />
+      <input v-model="nuevoProducto.iconoSrc" type="text" name="iconoSrc" id="iconoSrc" placeholder="URL del icono" />
+      <img class="icono free" :src="nuevoProducto.iconoSrc" alt="icono" />
+    </div>
+    <button @click="nuevaTarjeta">Nuevo</button>
+  </div>
 
-    <div v-for="producto in listaProductos" :key="producto.id">
-      <div class="card">
-        <h1 :style="getH1Style(producto)">{{ producto.texto }}</h1>
-        <div class="cat"></div>
-        <img class="img" :src="producto.img" alt="" />
-        <h2 class="h2">{{ producto.Nombre }}</h2>
-        <img class="icono free" :src="producto.icono" alt="Imagen en la esquina inferior izquierda" />
+  <div class="card-container">
+    <div v-for="producto in listaProductos" :key="producto.id" >
+      <div>
+        <div class="card" @click="seleccionarTarjeta(producto)">
+          <h1 :style="getH1Style(producto)">{{ producto.texto }}</h1>
+          <div class="cat"></div>
+          <img class="img" :src="producto.img" alt="" />
+          <h2 class="h2">{{ producto.Nombre }}</h2>
+          <img
+            class="icono free"
+            :src="producto.icono"
+            alt="Imagen en la esquina inferior izquierda"
+          />
+        </div>
+        <div v-if="tarjetaSeleccionada">
+          <h3>Editar contenido de la tarjeta seleccionada:</h3>
+          <button @click="editarTarjeta(producto)">Editar</button>
+          <button @click="eliminarTarjeta (producto.id)">eliminar</button>
+          <textarea v-model="tarjetaSeleccionada.Nombre"></textarea>
+          <!-- Agregar más campos para editar otros contenidos de la tarjeta según sea necesario -->
+        </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref , onMounted} from 'vue';
+import * as ProductosControler from '../controlers/productoscontrolers';
 
-let listaProductos = [
-  {
-    id: "1",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/506/033/563/5808/front_fr.62.200.jpg	",
-    Nombre: "Monster Energy Ultra - 500 ml",
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
+let listaProductos = ref([]);
 
-  {
-    id: "2",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/761/010/008/8056/front_en.71.200.jpg",
-    Nombre: "Nesquik - Nestlé - 1 kg",
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
-  {
-    id: "3",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/301/762/042/2003/front_es.445.200.jpg",
-    Nombre: "Nutella - Ferrero - 400 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
-  {
-    id: "4",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/541/118/811/2709/front_es.396.200.jpg",
-    Nombre: "Almond No Sugars - Alpro - 1 l",
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
-  {
-    id: "5",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/541/118/810/3387/front_es.187.200.jpg",
-    Nombre: "Alpro vainilla - 500 g",
+// Hacer tarjetaSeleccionada reactiva usando ref()
+let tarjetaSeleccionada = ref(null);
 
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
-  {
-    id: "6",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/87157215/front_es.169.200.jpg",
-    Nombre: "Ketchup - Heinz - 250 g ",
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
-  {
-    id: "7",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/848/000/003/8524/front_es.73.200.jpg",
-    Nombre: "Guacamole - Hacendado - 200g",
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
-  {
-    id: "8",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/20095291/front_es.133.200.jpg",
-    Nombre: "Chocolate negro Ecuador 70% cacao - J.D. Gross - 125g",
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
-  {
-    id: "9",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/20150907/front_es.115.200.jpg",
-    Nombre: "Arándanos deshidratados - Alesto - 200 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
-  {
-    id: "10",
-    texto: "Muy recomendable 100%",
-    img: "https://images.openfoodfacts.org/images/products/807/680/951/3722/front_es.878.200.jpg",
-    Nombre: "Basilico - Barilla - 400 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/no-gluten.svg",
-    color: "verde"
-  },
-  {
-    id: "11",
-    texto: "Poca informacion 20%",
-    img: "https://images.openfoodfacts.org/images/products/324/541/380/8196/front_fr.66.200.jpg",
-    Nombre: "Pesto verde - Carrefour - 190 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color: "naranja"
-  },
-  {
-    id: "12",
-    texto: "Poca informacion 20%",
-    img: "https://images.openfoodfacts.org/images/products/541/118/811/0835/front_es.382.200.jpg",
-    Nombre: "Leche de almendras tostadas - Alpro - 1 L",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color: "naranja"
-  },
-  {
-    id: "13",
-    texto: "Poca informacion 20%",
-    img: "https://images.openfoodfacts.org/images/products/871/410/063/5650/front_es.153.200.jpg",
-    Nombre: "mini Almond - Magnum - 330 ml / 276 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color: "naranja"
-  },
-  {
-    id: "14",
-    texto: "Poca informacion 20%",
-    img: "https://images.openfoodfacts.org/images/products/848/000/029/1349/front_es.18.200.jpg",
-    Nombre: "Harina integral de trigo - Hacendado - 1 kg",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color: "naranja"
-  },
-  {
-    id: "15",
-    texto: "Poca informacion 20%",
-    img: "https://images.openfoodfacts.org/images/products/842/320/720/1315/front_es.24.200.jpg",
-    Nombre: "Tortitas de Maíz - Bicentury - 130 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color: "naranja"
+// Datos del nuevo producto
+let nuevoProducto = ref({
+  texto: '',
+  imgSrc: '',
+  Nombre: '',
+  iconoSrc: '',
+  color: 'verde'
+});
+// Obtener los productos después de que el componente se monta
+onMounted(async () => {
+  listaProductos.value = await ProductosControler.getAllProductos();
+  console.log(listaProductos.value);
+});
 
-  },
-  {
-    id: "16",
-    texto: "Poca informacion 20%",
-    img: "https://images.openfoodfacts.org/images/products/84117205/front_es.30.200.jpg",
-    Nombre: "Batido de chocolate - Puleva - 200 ml",
-    icono: "https://static.openfoodfacts.org/images/attributes/may-contain-gluten.svg",
-    color: "naranja"
-
-
-  },
-  {
-    id: "17",
-    texto: "sin informacion suficiente",
-    img: "https://images.openfoodfacts.org/images/products/841/012/801/0225/front_es.17.200.jpg",
-    Nombre: "Leche desnatada 0% - Pascual - 1 litro",
-    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
-    color: "gris"
-
-  },
-  {
-    id: "18",
-    texto: "sin informacion suficiente",
-    img: "https://images.openfoodfacts.org/images/products/14126008/front_es.22.200.jpg",
-    Nombre: "pan sin gluten - Bimbo - 450 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
-    color: "gris"
-  },
-  {
-    id: "19",
-    texto: "sin informacion suficiente",
-    img: "https://images.openfoodfacts.org/images/products/87157239/front_es.150.200.jpg",
-    Nombre: "Ketchup - Heinz - 500ml",
-    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
-    color: "gris"
-  },
-  {
-    id: "20",
-    texto: "sin informacion suficiente",
-    img: "https://images.openfoodfacts.org/images/products/90162800/front_en.97.200.jpg",
-    Nombre: "RedBull Sugarfree - Red Bull - 250ml",
-    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
-    color: "gris"
-
-  },
-  {
-    id: "21",
-    texto: "sin informacion suficiente",
-    img: "https://images.openfoodfacts.org/images/products/871/570/040/7760/front_es.150.200.jpg",
-    Nombre: "Ketchup ecológico - Heinz - 580 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
-    color: "gris"
-  },
-
-  {
-    id: "22",
-    texto: "sin informacion suficiente",
-    img: "https://images.openfoodfacts.org/images/products/544/900/001/1527/front_es.215.200.jpg",
-    Nombre: "Fanta naranja - 330 ml",
-    icono: "https://static.openfoodfacts.org/images/attributes/gluten-content-unknown.svg",
-    color: "gris"
-  },
-  {
-    id: "23",
-    texto: "No Recomendable",
-    img: "https://images.openfoodfacts.org/images/products/841/001/444/2291/front_es.51.200.jpg",
-    Nombre: "Cola Cao 0% - 300 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
-    color: "rojo"
-  },
-
-  {
-    id: "24",
-    texto: "No Recomendable",
-    img: "https://images.openfoodfacts.org/images/products/400/172/481/9905/front_es.147.200.jpg",
-    Nombre: "Ristorante: Pizza vegetale - Dr. Oetker - 385 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
-    color: "rojo"
-  },
-  {
-    id: "25",
-    texto: "No Recomendable",
-    img: "https://images.openfoodfacts.org/images/products/338/739/032/6574/front_fr.315.200.jpg",
-    Nombre: "Cookie Crisp - 375 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
-    color: "rojo"
-  },
-
-  {
-    id: "26",
-    texto: "No Recomendable",
-    img: "https://images.openfoodfacts.org/images/products/871/503/511/0106/front_es.197.200.jpg",
-    Nombre: "Salsa de soja - Kikkoman - 150 ml",
-    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
-    color: "rojo"
-  },
-  {
-    id: "27",
-    texto: "No Recomendable",
-    img: "https://images.openfoodfacts.org/images/products/841/007/647/0812/front_es.116.200.jpg",
-    Nombre: "Wraps integrales de trigo - Old El Paso - 350 g",
-    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
-    color: "rojo"
-  },
-  {
-    id: "28",
-    texto: "No Recomendable",
-    img: "https://images.openfoodfacts.org/images/products/800/050/003/7560/front_es.199.200.jpg",
-    Nombre: "Kinder Bueno - 43g",
-    icono: "https://static.openfoodfacts.org/images/attributes/contains-gluten.svg",
-    color: "rojo"
-  },
-];
 function getH1Style(producto) {
-  if (producto.texto === "Poca informacion 20%") {
-    return "background-color: orange;";
-  } else if (producto.texto === "sin informacion suficiente") {
-    return "background-color: grey;";
-  } else if (producto.texto === "No Recomendable") {
-    return "background-color: red;";
+  if (producto.texto === 'Poca informacion 20%') {
+    return 'background-color: orange;';
+  } else if (producto.texto === 'sin informacion suficiente') {
+    return 'background-color: grey;';
+  } else if (producto.texto === 'No Recomendable') {
+    return 'background-color: red;';
   } else {
-    return "background-color: green;";
+    return 'background-color: green;';
   }
 }
 
+function seleccionarTarjeta(producto) {
+  // Si la misma tarjeta ya estaba seleccionada, deseleccionarla
+  if (tarjetaSeleccionada.value === producto) {
+    tarjetaSeleccionada.value = null;
+  } else {
+    tarjetaSeleccionada.value = producto;
+  }
+}
+
+function eliminarTarjeta(id){
+  ProductosControler.deleteProducto(id)
+
+  const index = listaProductos.value.findIndex((producto) => producto.id === id);
+  if (index !== -1) {
+    // Utilizar splice para eliminar el producto con el ID específico
+    listaProductos.value.splice(index, 1);
+    // Si quieres también puedes eliminar la selección después de eliminar la tarjeta
+    tarjetaSeleccionada.value = null;
+  }
+  
+}
+
+function editarTarjeta(producto){
+  console.log('editar', producto);
+  ProductosControler.updateProducto(producto.id,producto)
+  tarjetaSeleccionada.value = null;
+}
+
+function nuevaTarjeta(){
+  
+  // Crea un nuevo objeto para representar el producto
+  const producto = {
+    texto: nuevoProducto.value.texto,
+    img: nuevoProducto.value.imgSrc,
+    Nombre: nuevoProducto.value.Nombre,
+    icono: nuevoProducto.value.iconoSrc,
+    color: 'verde'
+  };
+  
+  console.log(producto);
+  ProductosControler.createProducto(producto)
+  // Agrega el nuevo producto a la lista de productos
+  listaProductos.value.push(producto);
+  
+  // Reinicia los campos del formulario después de agregar el producto
+  nuevoProducto.value.texto = '';
+  nuevoProducto.value.imgSrc = '';
+  nuevoProducto.value.Nombre = '';
+  nuevoProducto.value.iconoSrc = '';
+}
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .card-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
-
 }
 
 .card {
@@ -287,31 +143,11 @@ function getH1Style(producto) {
   margin: 10px;
 }
 
-/* .card:last-child {
-  margin-right: 0;
-} */
 .img {
-  /* width: 46%;
-  height: 20%;
-  object-fit: cover;
-  display: block;
-  margin-bottom: 20px;
-  padding: 15px;
-  max-height: 260px;
-  align: center ; */
-
-
+color: #000;
 }
-
 .h1 {
-  background-color: rgb(28, 238, 28);
-  font-size: 1rem;
-  display: inline-block block;
-  text-align: center;
-  margin-top: auto;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  padding: 2px;
+color: #ccc;
 }
 
 img {
@@ -320,9 +156,7 @@ img {
 }
 
 .h2 {
-  font-size: medium;
-  text-align: center;
-
+  
 }
 
 .naranja {

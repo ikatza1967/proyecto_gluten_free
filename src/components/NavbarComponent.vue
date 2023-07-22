@@ -1,4 +1,7 @@
 <template>
+  
+  
+  
   <div class="navbar">
   
       
@@ -12,6 +15,7 @@
       <div class="navbar-items">
         <div class="navbar-item">
           <input class="buscar"  type="text" placeholder="Buscar producto" />
+          <input class="buscar-logo"  type="img " placeholder="Buscar producto" />
         </div>
       </div>
       <div class="navbar-item">
@@ -31,7 +35,7 @@
    background-repeat: no-repeat;
    background-position: center center;
 /* display: flex; */
-/* align-items: center; */
+   
 
 } 
  
@@ -44,22 +48,29 @@
   position:absolute;
   top:14%;
   left: 30px;
+  border-radius: 20px;
 } 
 .navbar-item a{
   color: white;
   text-decoration: none;
 }
- .logo {
-  order: 1;
-  margin-right: 20px;
-  height: 550px;
-  width: 600px; 
-  
-}  
+   
 .buscar{
   height: 2em;
-  border-radius: 2rem;
+  border-bottom-left-radius:2rem;
+  border-top-left-radius: 2em;
   
+
 }
+.buscar-logo{
+  border-bottom-right-radius:2rem;
+  border-top-right-radius: 2em;
+  height: 2em;
+  width: 2rem;
+}
+.glutenf{
+  border-radius: 70px;
+}
+
 
 </style>
