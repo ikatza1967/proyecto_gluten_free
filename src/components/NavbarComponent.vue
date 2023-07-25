@@ -35,7 +35,7 @@
       </div>
       <div class="navbar-buttons">
       <button class="navbar-btn">Home</button>
-      <button class="navbar-btn" disabled="disabled">intranet</button>
+      <button class="navbar-btn"   disabled="disabled">intranet</button>
       </div>
  </div>
     </nav>
