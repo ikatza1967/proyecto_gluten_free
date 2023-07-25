@@ -1,13 +1,13 @@
 <template>
 <div>
-    <div class="card">
+    <div class="card-formulario">
       <input v-model="nuevoProducto.texto" type="text" name="texto" id="texto" placeholder="Adecuado" />
       <input v-model="nuevoProducto.imgSrc" type="text" name="imgSrc" id="imgSrc" placeholder="URL de la foto" />
       <input v-model="nuevoProducto.Nombre" type="text" name="nombre" id="nombre" placeholder="Nombre del producto" />
       <input v-model="nuevoProducto.iconoSrc" type="text" name="iconoSrc" id="iconoSrc" placeholder="URL del icono" />
       <img class="icono free" :src="nuevoProducto.iconoSrc" alt="icono" />
     </div>
-    <button @click="nuevaTarjeta">Nuevo</button>
+    <button class="boton" @click="nuevaTarjeta">Nuevo</button>
   </div>
 
   <div class="card-container">
@@ -155,11 +155,45 @@ img {
   max-height: 100%;
 }
 
-.h2 {
-  
+
+------------------------/* Estilos para el botón */------------------------
+Estilos para el icono
+img.icono {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} 
+/* ---------------Estilos para elformulario---------------------------- */
+.card-formulario {
+  background-color: #518b59;
+  border-radius: 10px;
+  /* box-shadow: 0 2px 4px rgba(133, 233, 147, 0.1); */
+  padding: 20px;
+  width: 400px;
+  margin-top: 10px;
+} 
+/* ---------------Estilos para los campos de entrada------------------ */
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+} 
+button {
+ margin-top: 1rem;
+ border-radius: 5em;
+ 
+ 
+ 
+ 
 }
 
-.naranja {
-  background-color: coral;
-}
+button:hover {
+ background-color: #4af153;
+ 
+} 
+
 </style>

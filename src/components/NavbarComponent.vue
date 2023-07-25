@@ -8,7 +8,7 @@
     <nav>
       <div class="logo">
         <div class="glutenfree" >
-          <img class="glutenf" src="../assets/img/glutenfree.jpg" alt="Logo de la empresa" />
+          <img class="glutenf" src="../assets/img/logoglutenfree.jpg" alt="Logo de la empresa" />
         </div> 
          
       </div>
@@ -51,7 +51,7 @@
   border-radius: 20px;
 } 
 .navbar-item a{
-  color: white;
+  color: rgb(243, 243, 248);
   text-decoration: none;
 }
    
