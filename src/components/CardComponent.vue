@@ -5,7 +5,7 @@
       <input v-model="nuevoProducto.imgSrc" type="text" name="imgSrc" id="imgSrc" placeholder="URL de la foto" />
       <input v-model="nuevoProducto.Nombre" type="text" name="nombre" id="nombre" placeholder="Nombre del producto" />
       <input v-model="nuevoProducto.iconoSrc" type="text" name="iconoSrc" id="iconoSrc" placeholder="URL del icono" />
-      <img class="icono free" :src="nuevoProducto.iconoSrc" alt="icono" />
+      <img class="icono free"  alt="" />
     </div>
     <button class="boton" @click="nuevaTarjeta">Nuevo</button>
   </div>
@@ -34,6 +34,11 @@
 
       </div>
     </div>
+  </div>
+  <div>
+    <footer>
+      
+    </footer>
   </div>
 </template>
 
@@ -131,6 +136,7 @@ function nuevaTarjeta(){
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
+  background-color: forestgreen;
 }
 
 .card {
@@ -141,6 +147,7 @@ function nuevaTarjeta(){
   text-align: center;
   position: relative;
   margin: 10px;
+  background-color: #ccc;
 }
 
 .img {
@@ -185,7 +192,7 @@ input[type="text"] {
 button {
  margin-top: 1rem;
  border-radius: 5em;
- 
+ margin-bottom:1rem ;
  
  
  
@@ -195,5 +202,24 @@ button:hover {
  background-color: #4af153;
  
 } 
+/* Media queries para hacerlo responsive */
+@media screen and (max-width: 500px) {
+      /* Ajustar el ancho de la tarjeta en dispositivos más pequeños */
+      .card-formulario {
+        width: 88%;
+        
+      }
+      .card{
+        width: 93%;
+      }
+    }
+
+    @media screen and (max-width: 400px) {
+      /* Ajustar el ancho de los campos de entrada y el botón en dispositivos aún más pequeños */
+      input[type="text"],
+      .boton {
+        width: 100%;
+      }
+    }
 
 </style>

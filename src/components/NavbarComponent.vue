@@ -59,7 +59,7 @@
   height: 2em;
   border-bottom-left-radius:2rem;
   border-top-left-radius: 2em;
-  
+  text-align: center;
 
 }
 .buscar-logo{
@@ -71,6 +71,32 @@
 .glutenf{
   border-radius: 70px;
 }
+.navbar-items {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-item {
+      margin: 0 10px;
+    }
+
+    input.buscar {
+      padding: 1px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 5px;
+    }
+
+    /* Estilos para el enlace */
+    a {
+      color: #0c0b0b;
+      text-decoration: none;
+      /* padding: 6px; */
+      border-radius: 5px;
+      background-color: #5cf163;
+      
+    }
+  </style>
 
 
-</style>
+
