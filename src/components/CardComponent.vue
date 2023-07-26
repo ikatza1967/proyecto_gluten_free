@@ -28,7 +28,10 @@
           <h3>Editar contenido de la tarjeta seleccionada:</h3>
           <button @click="editarTarjeta(producto)">Editar</button>
           <button @click="eliminarTarjeta (producto.id)">eliminar</button>
-          <textarea v-model="tarjetaSeleccionada.Nombre"></textarea>
+          <textarea v-model="producto.Nombre"></textarea>
+          <textarea v-model="producto.texto"></textarea>
+          <textarea v-model="tarjetaSeleccionada.img"></textarea>
+          <textarea v-model="tarjetaSeleccionada.icono"></textarea>
           <!-- Agregar más campos para editar otros contenidos de la tarjeta según sea necesario -->
         </div>
 
@@ -100,6 +103,10 @@ function eliminarTarjeta(id){
 }
 
 function editarTarjeta(producto){
+  const h1Element = document.querySelector('.card h1');
+  if (h1Element) {
+    h1Element.textContent = producto.texto;
+  }
   console.log('editar', producto);
   ProductosControler.updateProducto(producto.id,producto)
   tarjetaSeleccionada.value = null;

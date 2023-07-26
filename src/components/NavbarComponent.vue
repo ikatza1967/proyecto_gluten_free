@@ -34,12 +34,14 @@
         <a href="#">Iniciar sesión</a>
       </div>
       <div class="navbar-buttons">
-      <button class="navbar-btn">Home</button>
-      <button class="navbar-btn"   disabled="disabled">intranet</button>
+  
+      <router-link class="navbar-btn" :to="{name: 'home'}"> Home </router-link>
+      <router-link class="navbar-btn" :to="{name: 'intranet'}"> Intranet </router-link>
+      
       </div>
  </div>
     </nav>
-  
+ 
 </template>
 <script setup></script>
 <style scoped>

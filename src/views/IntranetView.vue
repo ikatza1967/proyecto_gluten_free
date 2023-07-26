@@ -1,16 +1,19 @@
 <template>
-    <NavbarComponent />
+
+    <h1>Intranet</h1>
     <CardComponent />
-    <FooterComponent/>
+ 
     
   </template>
   
   <script setup>
-  import NavbarComponent from "../components/NavbarComponent.vue";
   import CardComponent from "../components/CardComponent.vue";
-  import FooterComponent from "../components/FooterComponent.vue";
+
   
   </script>
   
   <style>
+  h1{
+    text-align: center;
+  }
   </style>

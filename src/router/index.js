@@ -8,7 +8,9 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/intranet',component:IntranetView
+    name: 'intranet',
+    path: '/intranet',
+    component:IntranetView
     
   },
   
